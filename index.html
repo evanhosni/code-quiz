@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Quiz</title>
+    <title>evan quiz</title>
     <link rel="stylesheet" href="./Assets/style.css">
+    <link rel="icon" type="image/png" href="./Assets/favicon.png"/>
 </head>
 <body>
     <header>
-        <a href="">View Highscores</a>
-        <div id="timer-div">Time: <span id="timer"></span></div>
-        <div id="score-div">Score: <span id="score"></span></div>
+        <a onclick="showHighScores()">view highscores</a>
+        <div id="timer-div">time: <span id="timer"></span></div>
+        <div id="score-div">score: <span id="score"></span></div>
     </header>
 
     <main>
         <div id="start-screen">
             <h1>evan quiz</h1>
-            <p>Ayy here's my quiz. I hope you're ready. Smash that mf start button to continue.</p>
+            <p>Ayy here's my quiz. i hope you're ready. smash that mf start button to continue.</p>
             <button onclick="startQuiz()">Ayy lmao</button>
         </div>
 
@@ -34,6 +35,14 @@
             </form>
         </div>
 
+        <div id="high-scores">
+            <h2>high scores</h2>
+            <ol>
+                <li><span>ABC</span> --- <span>0</span></li>
+                <li><span>ABC</span> --- <span>0</span></li>
+                <li><span>ABC</span> --- <span>0</span></li>
+            </ol>
+        </div>
 
     </main>
 

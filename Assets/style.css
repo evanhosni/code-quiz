@@ -4,9 +4,23 @@
     font-weight: bold;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+input:hover[type="submit"] {
+    cursor: pointer;
+}
+
+
 header {
     display: flex;
     justify-content: space-between;
+}
+
+header a:hover {
+    cursor: pointer;
+    color: white;
 }
 
 #timer-div {
@@ -16,6 +30,7 @@ header {
 #score-div {
     display: none;
 }
+
 
 main {
     text-align: center;
@@ -27,5 +42,9 @@ main {
 }
 
 #initials {
+    display: none;
+}
+
+#high-scores {
     display: none;
 }

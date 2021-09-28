@@ -17,6 +17,7 @@ var questionsArray = [
 ];
 var score = 0;
 var timeLeft = 59;
+var highScores = [];
 
 function startQuiz() {
     document.getElementById("start-screen").style.display = "none";
@@ -82,6 +83,7 @@ function showHighScores() {
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("quiz").style.display = "none";
     document.getElementById("initials").style.display = "none";
+    document.getElementById("high-scores").style.display = "block";
 }
 
 function timer() {
