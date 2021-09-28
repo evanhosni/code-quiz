@@ -1,0 +1,31 @@
+* {
+    background: salmon;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#timer-div {
+    display: none;
+}
+
+#score-div {
+    display: none;
+}
+
+main {
+    text-align: center;
+    margin-top: 5%;
+}
+
+#quiz {
+    display: none;
+}
+
+#initials {
+    display: none;
+}
