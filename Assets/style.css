@@ -2,6 +2,19 @@
     background: salmon;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
+    font-size: x-large;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+h2 {
+    font-size: xx-large;
+}
+
+button {
+    padding: 2px 4px;
 }
 
 button:hover {
@@ -45,6 +58,10 @@ main {
     display: none;
 }
 
+#quiz button {
+    margin: 5px
+}
+
 #initials {
     display: none;
 }
@@ -59,7 +76,6 @@ main {
 
 #high-scores ol {
     text-align: left;
-    /* justify-content: center; */
     margin-left: auto;
     margin-right: auto;
 }

@@ -1,28 +1,59 @@
 var questionsArray = [
     {
-        question: 'what is the worst eating utencil',
+        image: './Assets/spork.png',
+        question: 'what is most overrated utencil',
         answers: ['fork','spoon','knife',],
         correctAnswer: 'spoon'
     },
     {
-        question: 'what kind of car',
-        answers: ['gti','minivan','bus','scotts civic'],
-        correctAnswer: 'gti'
+        image: './Assets/cat.png',
+        question: 'whats his name',
+        answers: ['rafeek','glenn','milkshakes','grandpa'],
+        correctAnswer: 'milkshakes'
     },
     {
-        question: 'hmmm?',
-        answers: ['YES','yeah kinda','nah','no'],
-        correctAnswer: 'YES'
+        image: './Assets/nose.png',
+        question: 'whose nose',
+        answers: ['bird','cow','dog','pig'],
+        correctAnswer: 'pig'
+    },
+    {
+        image: './Assets/xbox.png',
+        question: 'wanna play',
+        answers: ['no','yeah kinda','after my chores'],
+        correctAnswer: 'after my chores'
+    },
+    {
+        image: './Assets/lemon.png',
+        question: 'what is lemon',
+        answers: ['meat','citrus','friend','vegetable'],
+        correctAnswer: 'citrus'
+    },
+    {
+        image: './Assets/snowman.png',
+        question: 'what move is this',
+        answers: ['dab','floss','dougie','nae nae'],
+        correctAnswer: 'dab'
     }
 ];
 var score = 0;
 var timeLeft = 59;
 var highScores = [];
+var quizFinished = false;
+var startScreen = document.getElementById("start-screen")
+var quizScreen = document.getElementById("quiz")
+var initialsScreen = document.getElementById("initials")
+var highScoresScreen = document.getElementById("high-scores")
+var timerDiv = document.getElementById("timer-div")
+var timerContent = document.getElementById("timer")
+var scoreDiv = document.getElementById("score-div")
+var scoreContent = document.getElementById("score")
+
 
 function startQuiz() {
-    document.getElementById("start-screen").style.display = "none";
-    document.getElementById("timer-div").style.display = "block";
-    document.getElementById("quiz").style.display = "block";
+    startScreen.style.display = "none";
+    timerDiv.style.display = "block";
+    quizScreen.style.display = "block";
     nextQuestion()
     timer()
 }
@@ -33,6 +64,7 @@ function nextQuestion() {
     } else {
         var q = questionsArray[Math.floor(Math.random()*questionsArray.length)]
         var a = q.answers
+        document.getElementById("image").src = q.image;
         document.getElementById("question").textContent = q.question;
         document.getElementById("answers").textContent = ''
         for (let i = 0; i < a.length; i++) {
@@ -50,27 +82,25 @@ function nextQuestion() {
     }
 }
 
-
 function correctAnswer() {
-    console.log('yay')
     nextQuestion()
 }
 
 function incorrectAnswer() {
-    // console.log('sad')
     timeLeft -= 10;
-    document.getElementById("timer").textContent = timeLeft;
+    timerContent.textContent = timeLeft;
     nextQuestion()
 }
 
 function gameOver() {
     console.log('done')
+    quizFinished = true;
     score = timeLeft
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("timer-div").style.display = "none";
-    document.getElementById("score-div").style.display = "block";
-    document.getElementById("score").textContent = score
-    document.getElementById("initials").style.display = "block";
+    quizScreen.style.display = "none";
+    timerDiv.style.display = "none";
+    scoreDiv.style.display = "block";
+    scoreContent.textContent = score
+    initialsScreen.style.display = "block";
 }
 
 function storeInitials() {
@@ -80,20 +110,24 @@ function storeInitials() {
         highScores = JSON.parse(localStorage.getItem('storedScores'));
     }
     highScores.push([document.getElementById("initials-form").value,score])
-    // highScores.sort((a, b) => b.score - a.score);
+    highScores.sort((a, b) => b[1] - a[1]);
+    if (highScores.length > 10) {
+        highScores.splice(-1)
+    }
     localStorage.setItem('storedScores',JSON.stringify(highScores));
     showHighScores()
 }
 
 function showHighScores() {
-    document.getElementById("start-screen").style.display = "none";
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("initials").style.display = "none";
-    document.getElementById("high-scores").style.display = "block";
+    startScreen.style.display = "none";
+    quizScreen.style.display = "none";
+    initialsScreen.style.display = "none";
+    highScoresScreen.style.display = "block";
     document.getElementById("high-scores-list").textContent = "";
     highScores = JSON.parse(localStorage.getItem('storedScores'));
     if (highScores !== null) {
         document.getElementById("no-high-scores").style.display = "none";
+        highScores.sort((a, b) => b[1] - a[1]);
         for (let i = 0; i < highScores.length; i++) {
             var scoresLi = document.createElement("li")
             document.getElementById("high-scores-list").appendChild(scoresLi)
@@ -110,13 +144,16 @@ function refresh(){
 } 
 
 function timer() {
-    document.getElementById("timer").textContent = timeLeft + 1;
+    timerContent.textContent = timeLeft + 1;
     var countdown = setInterval(function() {
         if(timeLeft <= 0){
             clearInterval(countdown);
-            document.getElementById("timer").textContent = 0;
+            timerContent.textContent = 0;
+            if (!quizFinished) {
+                gameOver()
+            }
         }
-        document.getElementById("timer").textContent = timeLeft;
+        timerContent.textContent = timeLeft;
         timeLeft -= 1;
     }, 1000);
 }
