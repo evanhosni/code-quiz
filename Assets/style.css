@@ -67,7 +67,10 @@ main {
     color: white;
     padding: 12px;
     border-radius: 12px;
-    /* border: black solid 3px; */
+    /* position: absolute;
+    top: 450px;
+    text-align: center;/*BRRRUUUHHH
+    border: black solid 3px; */
 }
 
 #toast.show-good {
