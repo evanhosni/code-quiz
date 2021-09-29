@@ -18,6 +18,10 @@ header {
     justify-content: space-between;
 }
 
+header a{
+    text-decoration: underline;
+}
+
 header a:hover {
     cursor: pointer;
     color: white;
@@ -47,4 +51,15 @@ main {
 
 #high-scores {
     display: none;
+}
+
+#list-container {
+    display: flex;
+}
+
+#high-scores ol {
+    text-align: left;
+    /* justify-content: center; */
+    margin-left: auto;
+    margin-right: auto;
 }

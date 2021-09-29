@@ -37,11 +37,12 @@
 
         <div id="high-scores">
             <h2>high scores</h2>
-            <ol>
-                <li><span>ABC</span> --- <span>0</span></li>
-                <li><span>ABC</span> --- <span>0</span></li>
-                <li><span>ABC</span> --- <span>0</span></li>
-            </ol>
+            <p id="no-high-scores">(no high scores yet)</p>
+            <div id="list-container">
+                <ol id="high-scores-list"></ol>
+            </div>
+            <br><br>
+            <button onclick="refresh()">start over</button>
         </div>
 
     </main>

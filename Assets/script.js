@@ -38,7 +38,7 @@ function nextQuestion() {
         for (let i = 0; i < a.length; i++) {
             let btn = document.createElement("button")
             document.getElementById("answers").appendChild(btn)
-            //btn.innerHTML = a[Math.floor(Math.random()*a.length)]//come back to this//TODO - how do i randomize order?
+            //btn.innerHTML = a[Math.floor(Math.random()*a.length)]//come back to this//TODO - how do i randomize order of answers?
             btn.innerHTML = a[i]
             if (btn.innerHTML == q.correctAnswer) {
                 btn.addEventListener("click",correctAnswer)
@@ -75,7 +75,13 @@ function gameOver() {
 
 function storeInitials() {
     event.preventDefault();//why do i get warning: "'event' is depreciated. ts(6385)"?
-    localStorage.setItem("Initials", document.getElementById("initials-form").value)
+    var scoreList = localStorage.getItem('storedScores')
+    if (scoreList !== null) {
+        highScores = JSON.parse(localStorage.getItem('storedScores'));
+    }
+    highScores.push([document.getElementById("initials-form").value,score])
+    // highScores.sort((a, b) => b.score - a.score);
+    localStorage.setItem('storedScores',JSON.stringify(highScores));
     showHighScores()
 }
 
@@ -84,7 +90,24 @@ function showHighScores() {
     document.getElementById("quiz").style.display = "none";
     document.getElementById("initials").style.display = "none";
     document.getElementById("high-scores").style.display = "block";
+    document.getElementById("high-scores-list").textContent = "";
+    highScores = JSON.parse(localStorage.getItem('storedScores'));
+    if (highScores !== null) {
+        document.getElementById("no-high-scores").style.display = "none";
+        for (let i = 0; i < highScores.length; i++) {
+            var scoresLi = document.createElement("li")
+            document.getElementById("high-scores-list").appendChild(scoresLi)
+            scoresLi.textContent = highScores[i].join(" --- ")
+        }
+    } else {
+        document.getElementById("no-high-scores").style.display = "block";
+    }
+
 }
+
+function refresh(){
+    window.location.reload();
+} 
 
 function timer() {
     document.getElementById("timer").textContent = timeLeft + 1;
