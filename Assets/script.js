@@ -63,7 +63,7 @@ function nextQuestion() {
         gameOver()
     } else {
         var q = questionsArray[Math.floor(Math.random()*questionsArray.length)]
-        var a = q.answers
+        var a = shuffle(q.answers)
         document.getElementById("image").src = q.image;
         document.getElementById("question").textContent = q.question;
         document.getElementById("answers").textContent = ''
@@ -80,6 +80,18 @@ function nextQuestion() {
         }
         questionsArray.splice(questionsArray.indexOf(q), 1)
     }
+}
+
+function shuffle(array) {
+var m = array.length, temp, i;
+    while (m > 0) {
+        i = Math.floor(Math.random() * m);
+        m--;
+        temp = array[m];
+        array[m] = array[i];
+        array[i] = temp;
+    }
+    return array;
 }
 
 function correctAnswer() {
