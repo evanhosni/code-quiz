@@ -48,6 +48,7 @@ var timerDiv = document.getElementById("timer-div")
 var timerContent = document.getElementById("timer")
 var scoreDiv = document.getElementById("score-div")
 var scoreContent = document.getElementById("score")
+var toast = document.getElementById("toast")
 
 
 function startQuiz() {
@@ -70,7 +71,6 @@ function nextQuestion() {
         for (let i = 0; i < a.length; i++) {
             let btn = document.createElement("button")
             document.getElementById("answers").appendChild(btn)
-            //btn.innerHTML = a[Math.floor(Math.random()*a.length)]//come back to this//TODO - how do i randomize order of answers?
             btn.innerHTML = a[i]
             if (btn.innerHTML == q.correctAnswer) {
                 btn.addEventListener("click",correctAnswer)
@@ -95,12 +95,18 @@ var m = array.length, temp, i;
 }
 
 function correctAnswer() {
+    toast.textContent = "👍"
+    toast.className = "show-good";
+    setTimeout(function(){ toast.className = toast.className.replace("show-good", ""); }, 500);
     nextQuestion()
 }
 
 function incorrectAnswer() {
     timeLeft -= 10;
     timerContent.textContent = timeLeft;
+    toast.textContent = "👎"
+    toast.className = "show-bad";
+    setTimeout(function(){ toast.className = toast.className.replace("show-bad", ""); }, 500);
     nextQuestion()
 }
 

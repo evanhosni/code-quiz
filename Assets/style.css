@@ -62,6 +62,24 @@ main {
     margin: 5px
 }
 
+#toast {
+    display: none;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    /* border: black solid 3px; */
+}
+
+#toast.show-good {
+    display: inline;
+    background: green;
+}
+
+#toast.show-bad {
+    display: inline;
+    background: darkred;
+}
+
 #initials {
     display: none;
 }
